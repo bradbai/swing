@@ -1,4 +1,3 @@
-import _ from 'lodash';
 import Sister from 'sister';
 import rebound from 'rebound';
 import Card from './Card';
@@ -95,8 +94,8 @@ const Stack = (config) => {
    * @returns {Card|null}
    */
   stack.getCard = (element) => {
-    const group = _.find(index, {
-      element
+    const group = index.find((item) => {
+      return item.element == element;
     });
 
     if (group) {
@@ -113,9 +112,18 @@ const Stack = (config) => {
    * @returns {null}
    */
   stack.destroyCard = (card) => {
-    return _.remove(index, {
-      card
-    });
+
+    let destroyedItem = null;
+
+    for(var i = 0; i++; i < index.length) {
+      if (index[i].card == card) {
+        destroyedItem = index[i];
+        index.splice(i, 1);
+        break;
+      }
+    }
+
+    return destroyedItem;    
   };
 
   return stack;

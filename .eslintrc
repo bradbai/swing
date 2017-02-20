@@ -1,7 +1,9 @@
 {
   "extends": [
-    "canonical",
-    "canonical/lodash"
+    "canonical"
   ],
-  "root": true
+  "root": true,
+  "rules": {
+    "linebreak-style": 0
+  }
 }

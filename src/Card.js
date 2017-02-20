@@ -1,4 +1,3 @@
-import _ from 'lodash';
 import Sister from 'sister';
 import Hammer from 'hammerjs';
 import rebound from 'rebound';
@@ -411,7 +410,7 @@ Card.makeConfig = (config = {}) => {
     transform: Card.transform
   };
 
-  return _.assign({}, defaultConfig, config);
+  return Object.assign({}, defaultConfig, config);
 };
 
 /**
@@ -492,7 +491,7 @@ Card.isThrowOut = (xOffset, yOffset, element, throwOutConfidence) => {
  * @returns {number}
  */
 Card.throwOutDistance = (min, max) => {
-  return _.random(min, max);
+  return Math.random() * (max - min) + min;
 };
 
 /**
