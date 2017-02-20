@@ -6,7 +6,13 @@
  * @returns {Array}
  */
 const elementChildren = (element) => {
-  return element.childNodes.filter((node) => {
+  if (!element || !element.childNodes) {
+    return [];
+  }
+
+  let childNodesArray = [].slice.call(element.childNodes);
+
+  return childNodesArray.filter((node) => {
     return node.nodeType == 1;
   });
 };
