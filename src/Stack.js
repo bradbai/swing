@@ -58,8 +58,8 @@ const Stack = (config) => {
    * @param {HTMLElement} element
    * @returns {Card}
    */
-  stack.createCard = (element, cardData) => {
-    const card = Card(stack, element, cardData);
+  stack.createCard = (element) => {
+    const card = Card(stack, element);
     const events = [
       'throwout',
       'throwoutend',

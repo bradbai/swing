@@ -58,7 +58,7 @@ var computeDirection = function computeDirection(fromX, fromY, allowedDirections
  * @param {HTMLElement} targetElement
  * @returns {Object} An instance of Card.
  */
-var Card = function Card(stack, targetElement, cardData) {
+var Card = function Card(stack, targetElement) {
   var card = void 0;
   var config = void 0;
   var currentX = void 0;
@@ -82,7 +82,6 @@ var Card = function Card(stack, targetElement, cardData) {
 
   var construct = function construct() {
     card = {};
-    card.data = cardData;
     config = Card.makeConfig(stack.getConfig());
     eventEmitter = (0, _sister2.default)();
     springSystem = stack.getSpringSystem();

@@ -35,7 +35,7 @@ const computeDirection = (fromX, fromY, allowedDirections) => {
  * @param {HTMLElement} targetElement
  * @returns {Object} An instance of Card.
  */
-const Card = (stack, targetElement, cardData) => {
+const Card = (stack, targetElement) => {
   let card;
   let config;
   let currentX;
@@ -59,7 +59,6 @@ const Card = (stack, targetElement, cardData) => {
 
   const construct = () => {
     card = {};
-    card.data = cardData;
     config = Card.makeConfig(stack.getConfig());
     eventEmitter = Sister();
     springSystem = stack.getSpringSystem();
