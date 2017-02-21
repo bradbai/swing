@@ -369,6 +369,7 @@ var Card = function Card(stack, targetElement) {
    */
   card.throwIn = function (coordinateX, coordinateY, direction) {
     throwWhere(Card.THROW_IN, coordinateX, coordinateY, direction);
+    stack.onCardThrownIn(card);
   };
 
   /**
@@ -381,6 +382,7 @@ var Card = function Card(stack, targetElement) {
    */
   card.throwOut = function (coordinateX, coordinateY, direction) {
     throwWhere(Card.THROW_OUT, coordinateX, coordinateY, direction);
+    stack.onCardThrownOut(card);
   };
 
   /**

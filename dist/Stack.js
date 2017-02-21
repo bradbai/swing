@@ -27,12 +27,14 @@ var Stack = function Stack(config) {
   var index = void 0;
   var springSystem = void 0;
   var stack = void 0;
+  var remainingCards = void 0;
 
   var construct = function construct() {
     stack = {};
     springSystem = new _rebound2.default.SpringSystem();
     eventEmitter = (0, _sister2.default)();
     index = [];
+    remainingCards = [];
   };
 
   construct();
@@ -88,6 +90,8 @@ var Stack = function Stack(config) {
       element: element
     });
 
+    remainingCards.push(card);
+
     return card;
   };
 
@@ -109,6 +113,24 @@ var Stack = function Stack(config) {
     return null;
   };
 
+  stack.getTopCard = function () {
+    if (remainingCards.length > 0) {
+      return remainingCards[remainingCards.length - 1];
+    } else {
+      return null;
+    }
+  };
+
+  stack.onCardThrownOut = function (card) {
+    var cardThrownOutIx = remainingCards.indexOf(card);
+
+    remainingCards.splice(cardThrownOutIx, 1);
+  };
+
+  stack.onCardThrownIn = function (card) {
+    remainingCards.push(card);
+  };
+
   /**
    * Remove an instance of Card from the stack index.
    *
@@ -123,6 +145,13 @@ var Stack = function Stack(config) {
       if (index[i].card == card) {
         destroyedItem = index[i];
         index.splice(i, 1);
+        break;
+      }
+    }
+
+    for (var _i = 0; _i++; _i < remainingCards.length) {
+      if (remainingCards[_i].card == card) {
+        remainingCards.splice(_i, 1);
         break;
       }
     }

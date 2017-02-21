@@ -11,7 +11,13 @@ Object.defineProperty(exports, "__esModule", {
  * @returns {Array}
  */
 var elementChildren = function elementChildren(element) {
-  return element.childNodes.filter(function (node) {
+  if (!element || !element.childNodes) {
+    return [];
+  }
+
+  var childNodesArray = [].slice.call(element.childNodes);
+
+  return childNodesArray.filter(function (node) {
     return node.nodeType == 1;
   });
 };
