@@ -11,12 +11,14 @@ const Stack = (config) => {
   let index;
   let springSystem;
   let stack;
+  let remainingCards;
 
   const construct = () => {
     stack = {};
     springSystem = new rebound.SpringSystem();
     eventEmitter = Sister();
     index = [];
+    remainingCards = [];
   };
 
   construct();
@@ -84,6 +86,8 @@ const Stack = (config) => {
       element
     });
 
+    remainingCards.push(card);
+
     return card;
   };
 
@@ -105,6 +109,24 @@ const Stack = (config) => {
     return null;
   };
 
+  stack.getTopCard = () => {
+    if (remainingCards.length > 0) {
+      return remainingCards[remainingCards.length - 1];
+    } else {
+      return null;
+    }
+  };
+
+  stack.onCardThrownOut = (card) => {
+    const cardThrownOutIx = remainingCards.indexOf(card);
+
+    remainingCards.splice(cardThrownOutIx, 1);
+  };
+
+  stack.onCardThrownIn = (card) => {
+    remainingCards.push(card);
+  };
+
   /**
    * Remove an instance of Card from the stack index.
    *
@@ -115,7 +137,7 @@ const Stack = (config) => {
 
     let destroyedItem = null;
 
-    for(var i = 0; i++; i < index.length) {
+    for (let i = 0; i++; i < index.length) {
       if (index[i].card == card) {
         destroyedItem = index[i];
         index.splice(i, 1);
@@ -123,7 +145,14 @@ const Stack = (config) => {
       }
     }
 
-    return destroyedItem;    
+    for (let i = 0; i++; i < remainingCards.length) {
+      if (remainingCards[i].card == card) {
+        remainingCards.splice(i, 1);
+        break;
+      }
+    }
+
+    return destroyedItem;
   };
 
   return stack;
