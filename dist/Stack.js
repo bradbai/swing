@@ -123,6 +123,7 @@ var Stack = function Stack(config) {
 
   stack.onCardThrownOut = function (card) {
     var cardThrownOutIx = remainingCards.indexOf(card);
+
     remainingCards.splice(cardThrownOutIx, 1);
   };
 
@@ -130,6 +131,10 @@ var Stack = function Stack(config) {
     if (remainingCards.indexOf(card) < 0) {
       remainingCards.push(card);
     }
+  };
+
+  stack.areAnyCardsRemaining = function () {
+    return remainingCards.length > 0;
   };
 
   /**

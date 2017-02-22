@@ -119,6 +119,7 @@ const Stack = (config) => {
 
   stack.onCardThrownOut = (card) => {
     const cardThrownOutIx = remainingCards.indexOf(card);
+
     remainingCards.splice(cardThrownOutIx, 1);
   };
 
@@ -126,6 +127,10 @@ const Stack = (config) => {
     if (remainingCards.indexOf(card) < 0) {
       remainingCards.push(card);
     }
+  };
+
+  stack.areAnyCardsRemaining = () => {
+    return remainingCards.length > 0;
   };
 
   /**
