@@ -123,12 +123,13 @@ var Stack = function Stack(config) {
 
   stack.onCardThrownOut = function (card) {
     var cardThrownOutIx = remainingCards.indexOf(card);
-
     remainingCards.splice(cardThrownOutIx, 1);
   };
 
   stack.onCardThrownIn = function (card) {
-    remainingCards.push(card);
+    if (remainingCards.indexOf(card) < 0) {
+      remainingCards.push(card);
+    }
   };
 
   /**

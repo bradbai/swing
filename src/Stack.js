@@ -119,12 +119,13 @@ const Stack = (config) => {
 
   stack.onCardThrownOut = (card) => {
     const cardThrownOutIx = remainingCards.indexOf(card);
-
     remainingCards.splice(cardThrownOutIx, 1);
   };
 
   stack.onCardThrownIn = (card) => {
-    remainingCards.push(card);
+    if (remainingCards.indexOf(card) < 0) {
+      remainingCards.push(card);
+    }
   };
 
   /**
