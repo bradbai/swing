@@ -355,8 +355,8 @@ const Card = (stack, targetElement) => {
    * @returns {undefined}
    */
   card.throwIn = (coordinateX, coordinateY, direction) => {
-    throwWhere(Card.THROW_IN, coordinateX, coordinateY, direction);
     stack.onCardThrownIn(card);
+    throwWhere(Card.THROW_IN, coordinateX, coordinateY, direction);
   };
 
   /**
@@ -368,8 +368,8 @@ const Card = (stack, targetElement) => {
    * @returns {undefined}
    */
   card.throwOut = (coordinateX, coordinateY, direction) => {
-    throwWhere(Card.THROW_OUT, coordinateX, coordinateY, direction);
     stack.onCardThrownOut(card);
+    throwWhere(Card.THROW_OUT, coordinateX, coordinateY, direction);
   };
 
   /**
