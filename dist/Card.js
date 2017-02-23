@@ -114,10 +114,10 @@ var Card = function Card(stack, targetElement) {
       }]]
     });
 
-    Card.appendToParent(targetElement);
+    Card.prependToParent(targetElement);
 
     eventEmitter.on('panstart', function () {
-      Card.appendToParent(targetElement);
+      //Card.appendToParent(targetElement);
 
       eventEmitter.trigger('dragstart', {
         target: targetElement
@@ -462,6 +462,13 @@ Card.appendToParent = function (element) {
     parentNode.removeChild(element);
     parentNode.appendChild(element);
   }
+};
+
+Card.prependToParent = function (element) {
+  var parentNode = element.parentNode;
+
+  parentNode.removeChild(element);
+  parentNode.insertBefore(element, parentNode.firstChild);
 };
 
 /**
