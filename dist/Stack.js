@@ -115,7 +115,7 @@ var Stack = function Stack(config) {
 
   stack.getTopCard = function () {
     if (remainingCards.length > 0) {
-      return remainingCards[remainingCards.length - 1];
+      return remainingCards[0];
     } else {
       return null;
     }
