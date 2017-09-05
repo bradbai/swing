@@ -427,7 +427,7 @@ Card.makeConfig = (config = {}) => {
  * @returns {undefined}
  */
 Card.transform = (element, coordinateX, coordinateY, rotation) => {
-  element.style[vendorPrefix('transform')] = 'translate3d(0, 0, 0) translate(' + coordinateX + 'px, ' + coordinateY + 'px) rotate(' + rotation + 'deg)';
+  element.style[vendorPrefix('transform')] = 'translate(' + coordinateX + 'px)';
 };
 
 /**
