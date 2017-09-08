@@ -90,7 +90,8 @@ const Card = (stack, targetElement) => {
         [
           Hammer.Pan,
           {
-            threshold: 2
+            threshold: 2，
+            direction: Hammer.DIRECTION_HORIZONTAL
           }
         ]
       ]
