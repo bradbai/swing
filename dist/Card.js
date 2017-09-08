@@ -196,7 +196,6 @@ var Card = function Card(stack, targetElement) {
 
         global.addEventListener('touchmove', function (event) {
           if (dragging) {
-            event.preventDefault();
           }
         });
       })();
