@@ -110,7 +110,8 @@ var Card = function Card(stack, targetElement) {
 
     mc = new _hammerjs2.default.Manager(targetElement, {
       recognizers: [[_hammerjs2.default.Pan, {
-        threshold: 2
+        threshold: 2,
+        direction: _hammerjs2.default.DIRECTION_HORIZONTAL
       }]]
     });
 
@@ -438,7 +439,7 @@ Card.makeConfig = function () {
  * @returns {undefined}
  */
 Card.transform = function (element, coordinateX, coordinateY, rotation) {
-  element.style[(0, _vendorPrefix2.default)('transform')] = 'translate(' + coordinateX + 'px)';
+  element.style[(0, _vendorPrefix2.default)('transform')] = 'translate3d(0, 0, 0) translate(' + coordinateX + 'px, ' + coordinateY + 'px) rotate(' + rotation + 'deg)';
 };
 
 /**
