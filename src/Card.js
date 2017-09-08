@@ -183,7 +183,6 @@ const Card = (stack, targetElement) => {
 
         global.addEventListener('touchmove', (event) => {
           if (dragging) {
-            //event.preventDefault();
           }
         });
       })();
