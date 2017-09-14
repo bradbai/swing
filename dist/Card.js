@@ -169,8 +169,10 @@ var Card = function Card(stack, targetElement) {
     // "mousedown" event fires late on touch enabled devices, thus listening
     // to the touchstart event for touch enabled devices and mousedown otherwise.
     if ((0, _utilities.isTouchDevice)()) {
-      targetElement.addEventListener('touchstart', function () {
+      targetElement.addEventListener('touchstart', function (event) {
+        if (config.allowMovement(event, _utilities.isTouchDevice())) {
         eventEmitter.trigger('panstart');
+        }
       });
 
       targetElement.addEventListener('touchend', function () {
@@ -195,7 +197,7 @@ var Card = function Card(stack, targetElement) {
         });
 
         global.addEventListener('touchmove', function (event) {
-          if (dragging) {
+          if (dragging && config.allowMovement(event, _utilities.isTouchDevice())) {
           }
         });
       })();
@@ -218,12 +220,16 @@ var Card = function Card(stack, targetElement) {
     });
 
     mc.on('panmove', function (event) {
+      if (config.allowMovement(event, _utilities.isTouchDevice())) {
       eventEmitter.trigger('panmove', event);
+      }
     });
 
     mc.on('panend', function (event) {
       isPanning = false;
+      if (config.allowMovement(event, _utilities.isTouchDevice())) {
       eventEmitter.trigger('panend', event);
+      }
     });
 
     springThrowIn.addListener({
@@ -413,6 +419,9 @@ Card.makeConfig = function () {
 
   var defaultConfig = {
     allowedDirections: [_Direction2.default.RIGHT, _Direction2.default.LEFT, _Direction2.default.UP],
+    allowMovement: () => {
+       return true;
+     },
     isThrowOut: Card.isThrowOut,
     maxRotation: 20,
     maxThrowOutDistance: 500,
