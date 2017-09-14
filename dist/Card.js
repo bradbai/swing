@@ -419,7 +419,7 @@ Card.makeConfig = function () {
 
   var defaultConfig = {
     allowedDirections: [_Direction2.default.RIGHT, _Direction2.default.LEFT, _Direction2.default.UP],
-    allowMovement: () => {
+    allowMovement: function () {
        return true;
      },
     isThrowOut: Card.isThrowOut,
